@@ -156,6 +156,12 @@ The matched linear mortality model based on log P uses the prepared
 fish-growth-logp --data data/mortality_logp_inputs --split 0 --output results/logp_0.csv
 ```
 
+To compare the existing mass-basis subsets of the external set:
+
+```bash
+fish-growth-mass-basis --predictions data/figure_data/external_growth_predictions.csv --mass-audit data/figure_data/reach_growth_mass_basis_audit.csv --output-dir results/mass_basis
+```
+
 The `external_joint` folders contain the prepared source, selected growth, and
 query feature matrices, training labels and weights, chemical identifiers, and
 the saved growth-parent fold assignments. The 20 selected growth records are
@@ -184,6 +190,7 @@ versions or numerical libraries may produce different fitted trees.
 | `prepared_mortality.py` | Mortality source refits and external growth calibration |
 | `joint.py` | Growth-only and joint LightGBM comparators for the external set |
 | `logp.py` | Matched log P mortality comparator and growth intercept |
+| `mass_basis.py` | External comparisons by reported and standardized mass basis |
 
 This version targets growth NOEC. The earlier mixed-endpoint implementation
 remains in Git history.

@@ -20,6 +20,7 @@ fish-growth-baselines = "fish_growth_qsar.baselines:main"
 fish-growth-joint = "fish_growth_qsar.joint:main"
 fish-growth-source = "fish_growth_qsar.prepared_mortality:main"
 fish-growth-logp = "fish_growth_qsar.logp:main"
+fish-growth-mass-basis = "fish_growth_qsar.mass_basis:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]
