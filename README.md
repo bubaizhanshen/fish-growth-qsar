@@ -127,6 +127,8 @@ fish-growth-external data/figure_data/external_growth_predictions.csv --output-d
 
 These are conditional comparisons of the supplied predictions. Reproducing the
 model fits additionally requires the curated inputs and the saved split selections.
+When the prediction table contains `growth_logp_calibrated`, it is included in
+the external comparison automatically.
 
 The external growth-only random forest and kernel ridge comparators can be
 refitted using the prepared 20-record selections and 95-dimensional features:
@@ -145,6 +147,13 @@ LightGBM, and the two joint LightGBM comparators for the external set:
 ```bash
 fish-growth-source data/external_joint/split_0 --output-dir results/source_0
 fish-growth-joint data/external_joint/split_0 --output results/joint_0.csv
+```
+
+The matched linear mortality model based on log P uses the prepared
+`mortality_logp_inputs` in Supporting Data S1 and can be refitted for each split:
+
+```bash
+fish-growth-logp --data data/mortality_logp_inputs --split 0 --output results/logp_0.csv
 ```
 
 The `external_joint` folders contain the prepared source, selected growth, and
@@ -174,6 +183,7 @@ versions or numerical libraries may produce different fitted trees.
 | `baselines.py` | External growth-only random forest and kernel ridge comparators |
 | `prepared_mortality.py` | Mortality source refits and external growth calibration |
 | `joint.py` | Growth-only and joint LightGBM comparators for the external set |
+| `logp.py` | Matched log P mortality comparator and growth intercept |
 
 This version targets growth NOEC. The earlier mixed-endpoint implementation
 remains in Git history.

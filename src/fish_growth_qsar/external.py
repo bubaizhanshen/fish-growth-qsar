@@ -11,7 +11,7 @@ MODELS = (
 )
 
 
-def evaluate(predictions, models=MODELS, primary="mortality_calibrated",
+def evaluate(predictions, models=None, primary="mortality_calibrated",
              seed=2026110101, draws=10000):
     """Summarize paired predictions at the chemical level.
 
@@ -21,6 +21,10 @@ def evaluate(predictions, models=MODELS, primary="mortality_calibrated",
     chemical equal weight. Paired percentile intervals resample chemicals and
     condition on the fitted models and the selected external set.
     """
+    if models is None:
+        models = list(MODELS)
+        if "growth_logp_calibrated" in predictions.columns:
+            models.insert(1, "growth_logp_calibrated")
     models = tuple(models)
     if not models or primary not in models or len(models) != len(set(models)):
         raise ValueError("Models must be unique and include the primary model.")
