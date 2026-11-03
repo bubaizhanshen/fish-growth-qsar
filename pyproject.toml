@@ -8,10 +8,12 @@ version = "0.2.0"
 description = "Mortality QSAR transfer for fish growth NOEC prediction"
 readme = "README.md"
 requires-python = ">=3.10"
-dependencies = ["numpy>=1.26,<3", "pandas>=2.2,<3"]
+dependencies = ["numpy>=1.24,<3", "pandas>=2.1,<3"]
 
 [project.optional-dependencies]
 source = ["scipy>=1.13,<2", "scikit-learn>=1.6,<1.8", "lightgbm>=4.6,<5"]
+structure = ["rdkit>=2023.9"]
+trident = ["torch>=1.12,<3", "transformers>=4.44,<4.45", "rdkit>=2023.9"]
 
 [project.scripts]
 fish-growth = "fish_growth_qsar.predict:main"
@@ -21,6 +23,7 @@ fish-growth-joint = "fish_growth_qsar.joint:main"
 fish-growth-source = "fish_growth_qsar.prepared_mortality:main"
 fish-growth-logp = "fish_growth_qsar.logp:main"
 fish-growth-mass-basis = "fish_growth_qsar.mass_basis:main"
+fish-growth-trident = "fish_growth_qsar.trident:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]

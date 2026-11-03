@@ -97,8 +97,10 @@ def main():
     parser.add_argument("--output-dir", type=Path, required=True)
     parser.add_argument("--seed", type=int, default=2026110101)
     parser.add_argument("--draws", type=int, default=10000)
+    parser.add_argument("--models", nargs="+", help="Prediction columns to compare; include mortality_calibrated")
     args = parser.parse_args()
-    metrics, chemicals, paired = evaluate(pd.read_csv(args.input), seed=args.seed, draws=args.draws)
+    metrics, chemicals, paired = evaluate(pd.read_csv(args.input), models=args.models,
+                                          seed=args.seed, draws=args.draws)
     args.output_dir.mkdir(parents=True, exist_ok=True)
     metrics.to_csv(args.output_dir / "external_metrics.csv", index=False)
     chemicals.to_csv(args.output_dir / "external_chemical_metrics.csv", index=False)
